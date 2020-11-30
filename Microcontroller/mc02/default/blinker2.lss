@@ -1,0 +1,176 @@
+
+blinker2.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000000c6  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .bss          00000003  00800060  00800060  0000013a  2**0
+                  ALLOC
+  2 .stab         000006b4  00000000  00000000  0000013c  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  3 .stabstr      00000085  00000000  00000000  000007f0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  4 .debug_aranges 00000020  00000000  00000000  00000875  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_pubnames 00000044  00000000  00000000  00000895  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   000000df  00000000  00000000  000008d9  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 0000008c  00000000  00000000  000009b8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00000159  00000000  00000000  00000a44  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  00000030  00000000  00000000  00000ba0  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    00000097  00000000  00000000  00000bd0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_pubtypes 0000001e  00000000  00000000  00000c67  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	12 c0       	rjmp	.+36     	; 0x26 <__ctors_end>
+   2:	1f c0       	rjmp	.+62     	; 0x42 <__bad_interrupt>
+   4:	1e c0       	rjmp	.+60     	; 0x42 <__bad_interrupt>
+   6:	1d c0       	rjmp	.+58     	; 0x42 <__bad_interrupt>
+   8:	1c c0       	rjmp	.+56     	; 0x42 <__bad_interrupt>
+   a:	1b c0       	rjmp	.+54     	; 0x42 <__bad_interrupt>
+   c:	1a c0       	rjmp	.+52     	; 0x42 <__bad_interrupt>
+   e:	19 c0       	rjmp	.+50     	; 0x42 <__bad_interrupt>
+  10:	18 c0       	rjmp	.+48     	; 0x42 <__bad_interrupt>
+  12:	17 c0       	rjmp	.+46     	; 0x42 <__bad_interrupt>
+  14:	16 c0       	rjmp	.+44     	; 0x42 <__bad_interrupt>
+  16:	15 c0       	rjmp	.+42     	; 0x42 <__bad_interrupt>
+  18:	14 c0       	rjmp	.+40     	; 0x42 <__bad_interrupt>
+  1a:	14 c0       	rjmp	.+40     	; 0x44 <__vector_13>
+  1c:	12 c0       	rjmp	.+36     	; 0x42 <__bad_interrupt>
+  1e:	11 c0       	rjmp	.+34     	; 0x42 <__bad_interrupt>
+  20:	10 c0       	rjmp	.+32     	; 0x42 <__bad_interrupt>
+  22:	0f c0       	rjmp	.+30     	; 0x42 <__bad_interrupt>
+  24:	0e c0       	rjmp	.+28     	; 0x42 <__bad_interrupt>
+
+00000026 <__ctors_end>:
+  26:	11 24       	eor	r1, r1
+  28:	1f be       	out	0x3f, r1	; 63
+  2a:	cf ed       	ldi	r28, 0xDF	; 223
+  2c:	cd bf       	out	0x3d, r28	; 61
+
+0000002e <__do_clear_bss>:
+  2e:	10 e0       	ldi	r17, 0x00	; 0
+  30:	a0 e6       	ldi	r26, 0x60	; 96
+  32:	b0 e0       	ldi	r27, 0x00	; 0
+  34:	01 c0       	rjmp	.+2      	; 0x38 <.do_clear_bss_start>
+
+00000036 <.do_clear_bss_loop>:
+  36:	1d 92       	st	X+, r1
+
+00000038 <.do_clear_bss_start>:
+  38:	a3 36       	cpi	r26, 0x63	; 99
+  3a:	b1 07       	cpc	r27, r17
+  3c:	e1 f7       	brne	.-8      	; 0x36 <.do_clear_bss_loop>
+  3e:	22 d0       	rcall	.+68     	; 0x84 <main>
+  40:	40 c0       	rjmp	.+128    	; 0xc2 <_exit>
+
+00000042 <__bad_interrupt>:
+  42:	de cf       	rjmp	.-68     	; 0x0 <__vectors>
+
+00000044 <__vector_13>:
+
+volatile unsigned int zeit;
+volatile unsigned char zeit_laeuft; //als boolean benutzte variable
+
+/*interuppt funktion*/
+ISR (TIMER0_COMPA_vect){
+  44:	1f 92       	push	r1
+  46:	0f 92       	push	r0
+  48:	0f b6       	in	r0, 0x3f	; 63
+  4a:	0f 92       	push	r0
+  4c:	11 24       	eor	r1, r1
+  4e:	8f 93       	push	r24
+  50:	9f 93       	push	r25
+	if(zeit)zeit--;
+  52:	80 91 61 00 	lds	r24, 0x0061
+  56:	90 91 62 00 	lds	r25, 0x0062
+  5a:	00 97       	sbiw	r24, 0x00	; 0
+  5c:	51 f0       	breq	.+20     	; 0x72 <__vector_13+0x2e>
+  5e:	80 91 61 00 	lds	r24, 0x0061
+  62:	90 91 62 00 	lds	r25, 0x0062
+  66:	01 97       	sbiw	r24, 0x01	; 1
+  68:	90 93 62 00 	sts	0x0062, r25
+  6c:	80 93 61 00 	sts	0x0061, r24
+  70:	02 c0       	rjmp	.+4      	; 0x76 <__vector_13+0x32>
+	else zeit_laeuft = 0;
+  72:	10 92 60 00 	sts	0x0060, r1
+}
+  76:	9f 91       	pop	r25
+  78:	8f 91       	pop	r24
+  7a:	0f 90       	pop	r0
+  7c:	0f be       	out	0x3f, r0	; 63
+  7e:	0f 90       	pop	r0
+  80:	1f 90       	pop	r1
+  82:	18 95       	reti
+
+00000084 <main>:
+
+
+int main(void){
+	// Initialisieren
+	OCR0A = 249; //Bis wohin soll gezaehlt werden 
+  84:	89 ef       	ldi	r24, 0xF9	; 249
+  86:	86 bf       	out	0x36, r24	; 54
+	TCCR0A |=(1<<WGM01); //Bestimmt die zaehlweise des Timers
+  88:	80 b7       	in	r24, 0x30	; 48
+  8a:	82 60       	ori	r24, 0x02	; 2
+  8c:	80 bf       	out	0x30, r24	; 48
+	TIMSK |=(1<<OCIE0A); //bestimmt die interrupts die ausfuerbar sind 
+  8e:	89 b7       	in	r24, 0x39	; 57
+  90:	81 60       	ori	r24, 0x01	; 1
+  92:	89 bf       	out	0x39, r24	; 57
+											 //in diesem fall der "Timer/counter0 compare Match A" 	
+	TCCR0B |=(1<<CS00);//bestimmt ob ein interner bzw. externer takt fuer den timer benutzt werden soll
+  94:	83 b7       	in	r24, 0x33	; 51
+  96:	81 60       	ori	r24, 0x01	; 1
+  98:	83 bf       	out	0x33, r24	; 51
+										 //und mit welchem taktteiler benutzt werden soll
+										 //ausschlieslich nulltes bit gesetzt bedeutet keinen Taktteiler.
+
+	sei(); //Globale iterrupt wird aktiviert... (enabelt)
+  9a:	78 94       	sei
+	DDRB |= (1 << PB0); //pin pb0 als ausgang definieren
+  9c:	b8 9a       	sbi	0x17, 0	; 23
+	PORTB |= (1 << PB0);//inizialisierung des pins
+  9e:	c0 9a       	sbi	0x18, 0	; 24
+	
+	while(1){
+		PORTB ^= (1 << PB0); //toggeln des led pinns
+  a0:	31 e0       	ldi	r19, 0x01	; 1
+		zeit = 20000;//dauer der zeitverzoegerung im interrupt
+  a2:	80 e2       	ldi	r24, 0x20	; 32
+  a4:	9e e4       	ldi	r25, 0x4E	; 78
+	sei(); //Globale iterrupt wird aktiviert... (enabelt)
+	DDRB |= (1 << PB0); //pin pb0 als ausgang definieren
+	PORTB |= (1 << PB0);//inizialisierung des pins
+	
+	while(1){
+		PORTB ^= (1 << PB0); //toggeln des led pinns
+  a6:	28 b3       	in	r18, 0x18	; 24
+  a8:	23 27       	eor	r18, r19
+  aa:	28 bb       	out	0x18, r18	; 24
+		zeit = 20000;//dauer der zeitverzoegerung im interrupt
+  ac:	90 93 62 00 	sts	0x0062, r25
+  b0:	80 93 61 00 	sts	0x0061, r24
+		zeit_laeuft = 1;
+  b4:	30 93 60 00 	sts	0x0060, r19
+		while (zeit_laeuft); //warten auf interrupt
+  b8:	20 91 60 00 	lds	r18, 0x0060
+  bc:	22 23       	and	r18, r18
+  be:	e1 f7       	brne	.-8      	; 0xb8 <main+0x34>
+  c0:	f2 cf       	rjmp	.-28     	; 0xa6 <main+0x22>
+
+000000c2 <_exit>:
+  c2:	f8 94       	cli
+
+000000c4 <__stop_program>:
+  c4:	ff cf       	rjmp	.-2      	; 0xc4 <__stop_program>

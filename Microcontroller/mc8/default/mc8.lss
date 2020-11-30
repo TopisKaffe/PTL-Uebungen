@@ -1,0 +1,364 @@
+
+mc8.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000001ba  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000002  00800060  000001ba  0000024e  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000008  00800062  00800062  00000250  2**0
+                  ALLOC
+  3 .stab         000006b4  00000000  00000000  00000250  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  4 .stabstr      00000085  00000000  00000000  00000904  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_aranges 00000020  00000000  00000000  00000989  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_pubnames 0000009a  00000000  00000000  000009a9  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_info   0000027e  00000000  00000000  00000a43  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_abbrev 00000101  00000000  00000000  00000cc1  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_line   00000236  00000000  00000000  00000dc2  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_frame  00000050  00000000  00000000  00000ff8  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_str    000000fb  00000000  00000000  00001048  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_loc    00000069  00000000  00000000  00001143  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 13 .debug_pubtypes 00000038  00000000  00000000  000011ac  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	1a c0       	rjmp	.+52     	; 0x36 <__ctors_end>
+   2:	32 c0       	rjmp	.+100    	; 0x68 <__bad_interrupt>
+   4:	31 c0       	rjmp	.+98     	; 0x68 <__bad_interrupt>
+   6:	30 c0       	rjmp	.+96     	; 0x68 <__bad_interrupt>
+   8:	2f c0       	rjmp	.+94     	; 0x68 <__bad_interrupt>
+   a:	2e c0       	rjmp	.+92     	; 0x68 <__bad_interrupt>
+   c:	2d c0       	rjmp	.+90     	; 0x68 <__bad_interrupt>
+   e:	2c c0       	rjmp	.+88     	; 0x68 <__bad_interrupt>
+  10:	2b c0       	rjmp	.+86     	; 0x68 <__bad_interrupt>
+  12:	2a c0       	rjmp	.+84     	; 0x68 <__bad_interrupt>
+  14:	29 c0       	rjmp	.+82     	; 0x68 <__bad_interrupt>
+  16:	28 c0       	rjmp	.+80     	; 0x68 <__bad_interrupt>
+  18:	27 c0       	rjmp	.+78     	; 0x68 <__bad_interrupt>
+  1a:	31 c0       	rjmp	.+98     	; 0x7e <__vector_13>
+  1c:	25 c0       	rjmp	.+74     	; 0x68 <__bad_interrupt>
+  1e:	24 c0       	rjmp	.+72     	; 0x68 <__bad_interrupt>
+  20:	23 c0       	rjmp	.+70     	; 0x68 <__bad_interrupt>
+  22:	22 c0       	rjmp	.+68     	; 0x68 <__bad_interrupt>
+  24:	21 c0       	rjmp	.+66     	; 0x68 <__bad_interrupt>
+
+00000026 <tabelle>:
+  26:	c0 f9 a4 b0 99 92 02 f8 80 90 88 83 c6 a1 86 8e     ................
+
+00000036 <__ctors_end>:
+  36:	11 24       	eor	r1, r1
+  38:	1f be       	out	0x3f, r1	; 63
+  3a:	cf ed       	ldi	r28, 0xDF	; 223
+  3c:	cd bf       	out	0x3d, r28	; 61
+
+0000003e <__do_copy_data>:
+  3e:	10 e0       	ldi	r17, 0x00	; 0
+  40:	a0 e6       	ldi	r26, 0x60	; 96
+  42:	b0 e0       	ldi	r27, 0x00	; 0
+  44:	ea eb       	ldi	r30, 0xBA	; 186
+  46:	f1 e0       	ldi	r31, 0x01	; 1
+  48:	02 c0       	rjmp	.+4      	; 0x4e <__SREG__+0xf>
+  4a:	05 90       	lpm	r0, Z+
+  4c:	0d 92       	st	X+, r0
+  4e:	a2 36       	cpi	r26, 0x62	; 98
+  50:	b1 07       	cpc	r27, r17
+  52:	d9 f7       	brne	.-10     	; 0x4a <__SREG__+0xb>
+
+00000054 <__do_clear_bss>:
+  54:	10 e0       	ldi	r17, 0x00	; 0
+  56:	a2 e6       	ldi	r26, 0x62	; 98
+  58:	b0 e0       	ldi	r27, 0x00	; 0
+  5a:	01 c0       	rjmp	.+2      	; 0x5e <.do_clear_bss_start>
+
+0000005c <.do_clear_bss_loop>:
+  5c:	1d 92       	st	X+, r1
+
+0000005e <.do_clear_bss_start>:
+  5e:	aa 36       	cpi	r26, 0x6A	; 106
+  60:	b1 07       	cpc	r27, r17
+  62:	e1 f7       	brne	.-8      	; 0x5c <.do_clear_bss_loop>
+  64:	5c d0       	rcall	.+184    	; 0x11e <main>
+  66:	a7 c0       	rjmp	.+334    	; 0x1b6 <_exit>
+
+00000068 <__bad_interrupt>:
+  68:	cb cf       	rjmp	.-106    	; 0x0 <__vectors>
+
+0000006a <transbyte>:
+	[15] = 0b10111000
+    */
+
+
+void transbyte(uint8_t data){
+    UCSRB|= (1<<TXEN);
+  6a:	53 9a       	sbi	0x0a, 3	; 10
+    while(!(UCSRA & (1<<UDRE)));
+  6c:	5d 9b       	sbis	0x0b, 5	; 11
+  6e:	fe cf       	rjmp	.-4      	; 0x6c <transbyte+0x2>
+
+    UDR = data;
+  70:	8c b9       	out	0x0c, r24	; 12
+}
+  72:	08 95       	ret
+
+00000074 <resbyte>:
+
+
+
+uint8_t resbyte(void){
+    UCSRB|= (1<<RXEN); 
+  74:	54 9a       	sbi	0x0a, 4	; 10
+    while(!(UCSRA & (1<<RXC)));
+  76:	5f 9b       	sbis	0x0b, 7	; 11
+  78:	fe cf       	rjmp	.-4      	; 0x76 <resbyte+0x2>
+    return UDR;
+  7a:	8c b1       	in	r24, 0x0c	; 12
+}
+  7c:	08 95       	ret
+
+0000007e <__vector_13>:
+
+
+
+/*interrupt zur kontrolle der zaehlgeschwindigkeit*/
+ISR(TIMER0_COMPA_vect){
+  7e:	1f 92       	push	r1
+  80:	0f 92       	push	r0
+  82:	0f b6       	in	r0, 0x3f	; 63
+  84:	0f 92       	push	r0
+  86:	11 24       	eor	r1, r1
+  88:	2f 93       	push	r18
+  8a:	3f 93       	push	r19
+  8c:	8f 93       	push	r24
+  8e:	9f 93       	push	r25
+  90:	ef 93       	push	r30
+  92:	ff 93       	push	r31
+  
+    if(zeit_laeuft){
+  94:	80 91 65 00 	lds	r24, 0x0065
+  98:	88 23       	and	r24, r24
+  9a:	29 f0       	breq	.+10     	; 0xa6 <__vector_13+0x28>
+        zeit_laeuft--;
+  9c:	80 91 65 00 	lds	r24, 0x0065
+  a0:	81 50       	subi	r24, 0x01	; 1
+  a2:	80 93 65 00 	sts	0x0065, r24
+    }
+
+    //wechseln zwischen beiden anzeigen
+	if (ledzeit==(leuchtzeit*2)){ 
+  a6:	20 91 64 00 	lds	r18, 0x0064
+  aa:	80 91 60 00 	lds	r24, 0x0060
+  ae:	30 e0       	ldi	r19, 0x00	; 0
+  b0:	90 e0       	ldi	r25, 0x00	; 0
+  b2:	88 0f       	add	r24, r24
+  b4:	99 1f       	adc	r25, r25
+  b6:	28 17       	cp	r18, r24
+  b8:	39 07       	cpc	r19, r25
+  ba:	79 f4       	brne	.+30     	; 0xda <__vector_13+0x5c>
+		PORTD   ^=8;
+  bc:	82 b3       	in	r24, 0x12	; 18
+  be:	98 e0       	ldi	r25, 0x08	; 8
+  c0:	89 27       	eor	r24, r25
+  c2:	82 bb       	out	0x12, r24	; 18
+		PORTB   = pgm_read_byte(&tabelle[count]);	
+  c4:	e0 91 62 00 	lds	r30, 0x0062
+  c8:	f0 e0       	ldi	r31, 0x00	; 0
+  ca:	ea 5d       	subi	r30, 0xDA	; 218
+  cc:	ff 4f       	sbci	r31, 0xFF	; 255
+  ce:	e4 91       	lpm	r30, Z+
+  d0:	e8 bb       	out	0x18, r30	; 24
+		PORTD   |=4;
+  d2:	92 9a       	sbi	0x12, 2	; 18
+		ledzeit =0;
+  d4:	10 92 64 00 	sts	0x0064, r1
+  d8:	12 c0       	rjmp	.+36     	; 0xfe <__stack+0x1f>
+	}else if (ledzeit==leuchtzeit){	
+  da:	90 91 64 00 	lds	r25, 0x0064
+  de:	80 91 60 00 	lds	r24, 0x0060
+  e2:	98 17       	cp	r25, r24
+  e4:	61 f4       	brne	.+24     	; 0xfe <__stack+0x1f>
+		PORTD   ^=4 ;
+  e6:	82 b3       	in	r24, 0x12	; 18
+  e8:	94 e0       	ldi	r25, 0x04	; 4
+  ea:	89 27       	eor	r24, r25
+  ec:	82 bb       	out	0x12, r24	; 18
+		PORTB   = pgm_read_byte(&tabelle[countz]);
+  ee:	e0 91 63 00 	lds	r30, 0x0063
+  f2:	f0 e0       	ldi	r31, 0x00	; 0
+  f4:	ea 5d       	subi	r30, 0xDA	; 218
+  f6:	ff 4f       	sbci	r31, 0xFF	; 255
+  f8:	e4 91       	lpm	r30, Z+
+  fa:	e8 bb       	out	0x18, r30	; 24
+		PORTD   |=8;
+  fc:	93 9a       	sbi	0x12, 3	; 18
+	}
+	ledzeit++;	
+  fe:	80 91 64 00 	lds	r24, 0x0064
+ 102:	8f 5f       	subi	r24, 0xFF	; 255
+ 104:	80 93 64 00 	sts	0x0064, r24
+   
+}
+ 108:	ff 91       	pop	r31
+ 10a:	ef 91       	pop	r30
+ 10c:	9f 91       	pop	r25
+ 10e:	8f 91       	pop	r24
+ 110:	3f 91       	pop	r19
+ 112:	2f 91       	pop	r18
+ 114:	0f 90       	pop	r0
+ 116:	0f be       	out	0x3f, r0	; 63
+ 118:	0f 90       	pop	r0
+ 11a:	1f 90       	pop	r1
+ 11c:	18 95       	reti
+
+0000011e <main>:
+
+
+
+int main(void){
+ 11e:	0f 93       	push	r16
+ 120:	1f 93       	push	r17
+  
+
+	// Initialisieren
+
+	OCR0A  = 249; //Bis wohin soll gezaehlt werden 
+ 122:	89 ef       	ldi	r24, 0xF9	; 249
+ 124:	86 bf       	out	0x36, r24	; 54
+	TCCR0A |=(1<<WGM01); //Bestimmt die zaehlweise des Timers
+ 126:	80 b7       	in	r24, 0x30	; 48
+ 128:	82 60       	ori	r24, 0x02	; 2
+ 12a:	80 bf       	out	0x30, r24	; 48
+	TIMSK  |=(1<<OCIE0A); //bestimmt die interrupts die ausfuerbar sind 
+ 12c:	89 b7       	in	r24, 0x39	; 57
+ 12e:	81 60       	ori	r24, 0x01	; 1
+ 130:	89 bf       	out	0x39, r24	; 57
+						 //in diesem fall der "Timer/counter0 compare Match A" 	
+	TCCR0B |=(1<<CS00);//bestimmt ob ein interner bzw. externer takt fuer den timer benutzt werden soll
+ 132:	83 b7       	in	r24, 0x33	; 51
+ 134:	81 60       	ori	r24, 0x01	; 1
+ 136:	83 bf       	out	0x33, r24	; 51
+					  //und mit welchem taktteiler benutzt werden soll
+					  //ausschlieslich nulltes bit gesetzt bedeutet keinen Taktteiler.
+
+	sei(); //Globale iterrupt wird aktiviert... (enabelt)
+ 138:	78 94       	sei
+
+    
+    UCSRA|=2;
+ 13a:	59 9a       	sbi	0x0b, 1	; 11
+    UBRRL=12;
+ 13c:	8c e0       	ldi	r24, 0x0C	; 12
+ 13e:	89 b9       	out	0x09, r24	; 9
+	
+    
+    ledzeit =0;
+ 140:	10 92 64 00 	sts	0x0064, r1
+	DDRB    |= 255; //pins PORTB als ausgang definieren
+ 144:	87 b3       	in	r24, 0x17	; 23
+ 146:	8f ef       	ldi	r24, 0xFF	; 255
+ 148:	87 bb       	out	0x17, r24	; 23
+	PORTB   = pgm_read_byte(&tabelle[0]);//inizialisierung der pins
+ 14a:	e6 e2       	ldi	r30, 0x26	; 38
+ 14c:	f0 e0       	ldi	r31, 0x00	; 0
+ 14e:	e4 91       	lpm	r30, Z+
+ 150:	e8 bb       	out	0x18, r30	; 24
+	DDRD    |= 12;   //PD2 & PD3 als ausgang definieren
+ 152:	81 b3       	in	r24, 0x11	; 17
+ 154:	8c 60       	ori	r24, 0x0C	; 12
+ 156:	81 bb       	out	0x11, r24	; 17
+	PORTD   |= 3<<2;  //pullup widerstaende aktivieren
+ 158:	82 b3       	in	r24, 0x12	; 18
+ 15a:	8c 60       	ori	r24, 0x0C	; 12
+ 15c:	82 bb       	out	0x12, r24	; 18
+    PORTD   |= 12;   //PD2 & PD3 aktivieren
+ 15e:	82 b3       	in	r24, 0x12	; 18
+ 160:	8c 60       	ori	r24, 0x0C	; 12
+ 162:	82 bb       	out	0x12, r24	; 18
+        UCSRC |=  (3<<1);
+      
+        countz  =resbyte();
+        
+        transbyte(countz);
+        count   =countz%10;
+ 164:	1a e0       	ldi	r17, 0x0A	; 10
+        
+        if((PIND & 1<<5)&& !rauf){ //raufzaehlen bei tastendruck um 1 
+            transbyte(countz);
+        }
+        */
+        zeit_laeuft=3; //auskontern von nicht entpraellten schaltern
+ 166:	03 e0       	ldi	r16, 0x03	; 3
+	DDRD    |= 12;   //PD2 & PD3 als ausgang definieren
+	PORTD   |= 3<<2;  //pullup widerstaende aktivieren
+    PORTD   |= 12;   //PD2 & PD3 aktivieren
+
+	while(1){
+        UCSRC |=  (3<<1);
+ 168:	83 b1       	in	r24, 0x03	; 3
+ 16a:	86 60       	ori	r24, 0x06	; 6
+ 16c:	83 b9       	out	0x03, r24	; 3
+      
+        countz  =resbyte();
+ 16e:	82 df       	rcall	.-252    	; 0x74 <resbyte>
+ 170:	80 93 63 00 	sts	0x0063, r24
+        
+        transbyte(countz);
+ 174:	80 91 63 00 	lds	r24, 0x0063
+ 178:	78 df       	rcall	.-272    	; 0x6a <transbyte>
+        count   =countz%10;
+ 17a:	80 91 63 00 	lds	r24, 0x0063
+ 17e:	61 2f       	mov	r22, r17
+ 180:	0e d0       	rcall	.+28     	; 0x19e <__udivmodqi4>
+ 182:	90 93 62 00 	sts	0x0062, r25
+        countz  /=10;
+ 186:	80 91 63 00 	lds	r24, 0x0063
+ 18a:	09 d0       	rcall	.+18     	; 0x19e <__udivmodqi4>
+ 18c:	80 93 63 00 	sts	0x0063, r24
+        
+        if((PIND & 1<<5)&& !rauf){ //raufzaehlen bei tastendruck um 1 
+            transbyte(countz);
+        }
+        */
+        zeit_laeuft=3; //auskontern von nicht entpraellten schaltern
+ 190:	00 93 65 00 	sts	0x0065, r16
+        while(zeit_laeuft);
+ 194:	80 91 65 00 	lds	r24, 0x0065
+ 198:	88 23       	and	r24, r24
+ 19a:	e1 f7       	brne	.-8      	; 0x194 <main+0x76>
+ 19c:	e5 cf       	rjmp	.-54     	; 0x168 <main+0x4a>
+
+0000019e <__udivmodqi4>:
+ 19e:	99 1b       	sub	r25, r25
+ 1a0:	79 e0       	ldi	r23, 0x09	; 9
+ 1a2:	04 c0       	rjmp	.+8      	; 0x1ac <__udivmodqi4_ep>
+
+000001a4 <__udivmodqi4_loop>:
+ 1a4:	99 1f       	adc	r25, r25
+ 1a6:	96 17       	cp	r25, r22
+ 1a8:	08 f0       	brcs	.+2      	; 0x1ac <__udivmodqi4_ep>
+ 1aa:	96 1b       	sub	r25, r22
+
+000001ac <__udivmodqi4_ep>:
+ 1ac:	88 1f       	adc	r24, r24
+ 1ae:	7a 95       	dec	r23
+ 1b0:	c9 f7       	brne	.-14     	; 0x1a4 <__udivmodqi4_loop>
+ 1b2:	80 95       	com	r24
+ 1b4:	08 95       	ret
+
+000001b6 <_exit>:
+ 1b6:	f8 94       	cli
+
+000001b8 <__stop_program>:
+ 1b8:	ff cf       	rjmp	.-2      	; 0x1b8 <__stop_program>

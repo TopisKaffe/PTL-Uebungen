@@ -1,0 +1,317 @@
+
+ueb5.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000001ce  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000002  00800060  000001ce  00000262  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000008  00800062  00800062  00000264  2**0
+                  ALLOC
+  3 .stab         000006b4  00000000  00000000  00000264  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  4 .stabstr      00000085  00000000  00000000  00000918  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_aranges 00000020  00000000  00000000  0000099d  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_pubnames 0000008a  00000000  00000000  000009bd  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_info   0000024d  00000000  00000000  00000a47  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_abbrev 000000d9  00000000  00000000  00000c94  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_line   000001f5  00000000  00000000  00000d6d  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_frame  00000040  00000000  00000000  00000f64  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_str    000000f3  00000000  00000000  00000fa4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_loc    00000056  00000000  00000000  00001097  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 13 .debug_pubtypes 00000038  00000000  00000000  000010ed  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	1a c0       	rjmp	.+52     	; 0x36 <__ctors_end>
+   2:	32 c0       	rjmp	.+100    	; 0x68 <__bad_interrupt>
+   4:	31 c0       	rjmp	.+98     	; 0x68 <__bad_interrupt>
+   6:	30 c0       	rjmp	.+96     	; 0x68 <__bad_interrupt>
+   8:	2f c0       	rjmp	.+94     	; 0x68 <__bad_interrupt>
+   a:	2e c0       	rjmp	.+92     	; 0x68 <__bad_interrupt>
+   c:	2d c0       	rjmp	.+90     	; 0x68 <__bad_interrupt>
+   e:	2c c0       	rjmp	.+88     	; 0x68 <__bad_interrupt>
+  10:	2b c0       	rjmp	.+86     	; 0x68 <__bad_interrupt>
+  12:	2a c0       	rjmp	.+84     	; 0x68 <__bad_interrupt>
+  14:	29 c0       	rjmp	.+82     	; 0x68 <__bad_interrupt>
+  16:	28 c0       	rjmp	.+80     	; 0x68 <__bad_interrupt>
+  18:	27 c0       	rjmp	.+78     	; 0x68 <__bad_interrupt>
+  1a:	27 c0       	rjmp	.+78     	; 0x6a <__vector_13>
+  1c:	25 c0       	rjmp	.+74     	; 0x68 <__bad_interrupt>
+  1e:	24 c0       	rjmp	.+72     	; 0x68 <__bad_interrupt>
+  20:	23 c0       	rjmp	.+70     	; 0x68 <__bad_interrupt>
+  22:	22 c0       	rjmp	.+68     	; 0x68 <__bad_interrupt>
+  24:	21 c0       	rjmp	.+66     	; 0x68 <__bad_interrupt>
+
+00000026 <tabelle>:
+  26:	c0 f9 a4 b0 99 92 02 f8 80 90 88 e0 b1 c2 b0 b8     ................
+
+00000036 <__ctors_end>:
+  36:	11 24       	eor	r1, r1
+  38:	1f be       	out	0x3f, r1	; 63
+  3a:	cf ed       	ldi	r28, 0xDF	; 223
+  3c:	cd bf       	out	0x3d, r28	; 61
+
+0000003e <__do_copy_data>:
+  3e:	10 e0       	ldi	r17, 0x00	; 0
+  40:	a0 e6       	ldi	r26, 0x60	; 96
+  42:	b0 e0       	ldi	r27, 0x00	; 0
+  44:	ee ec       	ldi	r30, 0xCE	; 206
+  46:	f1 e0       	ldi	r31, 0x01	; 1
+  48:	02 c0       	rjmp	.+4      	; 0x4e <__SREG__+0xf>
+  4a:	05 90       	lpm	r0, Z+
+  4c:	0d 92       	st	X+, r0
+  4e:	a2 36       	cpi	r26, 0x62	; 98
+  50:	b1 07       	cpc	r27, r17
+  52:	d9 f7       	brne	.-10     	; 0x4a <__SREG__+0xb>
+
+00000054 <__do_clear_bss>:
+  54:	10 e0       	ldi	r17, 0x00	; 0
+  56:	a2 e6       	ldi	r26, 0x62	; 98
+  58:	b0 e0       	ldi	r27, 0x00	; 0
+  5a:	01 c0       	rjmp	.+2      	; 0x5e <.do_clear_bss_start>
+
+0000005c <.do_clear_bss_loop>:
+  5c:	1d 92       	st	X+, r1
+
+0000005e <.do_clear_bss_start>:
+  5e:	aa 36       	cpi	r26, 0x6A	; 106
+  60:	b1 07       	cpc	r27, r17
+  62:	e1 f7       	brne	.-8      	; 0x5c <.do_clear_bss_loop>
+  64:	7b d0       	rcall	.+246    	; 0x15c <main>
+  66:	b1 c0       	rjmp	.+354    	; 0x1ca <_exit>
+
+00000068 <__bad_interrupt>:
+  68:	cb cf       	rjmp	.-106    	; 0x0 <__vectors>
+
+0000006a <__vector_13>:
+	[15] = 0b10111000
+    */
+
+
+/*interrupt zur kontrolle der zaehlgeschwindigkeit*/
+ISR(TIMER0_COMPA_vect){
+  6a:	1f 92       	push	r1
+  6c:	0f 92       	push	r0
+  6e:	0f b6       	in	r0, 0x3f	; 63
+  70:	0f 92       	push	r0
+  72:	11 24       	eor	r1, r1
+  74:	2f 93       	push	r18
+  76:	3f 93       	push	r19
+  78:	8f 93       	push	r24
+  7a:	9f 93       	push	r25
+  7c:	af 93       	push	r26
+  7e:	bf 93       	push	r27
+  80:	ef 93       	push	r30
+  82:	ff 93       	push	r31
+	if(zeit)zeit--;
+  84:	80 91 66 00 	lds	r24, 0x0066
+  88:	90 91 67 00 	lds	r25, 0x0067
+  8c:	a0 91 68 00 	lds	r26, 0x0068
+  90:	b0 91 69 00 	lds	r27, 0x0069
+  94:	00 97       	sbiw	r24, 0x00	; 0
+  96:	a1 05       	cpc	r26, r1
+  98:	b1 05       	cpc	r27, r1
+  9a:	a1 f0       	breq	.+40     	; 0xc4 <__vector_13+0x5a>
+  9c:	80 91 66 00 	lds	r24, 0x0066
+  a0:	90 91 67 00 	lds	r25, 0x0067
+  a4:	a0 91 68 00 	lds	r26, 0x0068
+  a8:	b0 91 69 00 	lds	r27, 0x0069
+  ac:	01 97       	sbiw	r24, 0x01	; 1
+  ae:	a1 09       	sbc	r26, r1
+  b0:	b1 09       	sbc	r27, r1
+  b2:	80 93 66 00 	sts	0x0066, r24
+  b6:	90 93 67 00 	sts	0x0067, r25
+  ba:	a0 93 68 00 	sts	0x0068, r26
+  be:	b0 93 69 00 	sts	0x0069, r27
+  c2:	02 c0       	rjmp	.+4      	; 0xc8 <__vector_13+0x5e>
+	else zeit_laeuft = 0;
+  c4:	10 92 65 00 	sts	0x0065, r1
+
+	if (ledzeit==(leuchtzeit*2)){
+  c8:	20 91 64 00 	lds	r18, 0x0064
+  cc:	80 91 60 00 	lds	r24, 0x0060
+  d0:	30 e0       	ldi	r19, 0x00	; 0
+  d2:	90 e0       	ldi	r25, 0x00	; 0
+  d4:	88 0f       	add	r24, r24
+  d6:	99 1f       	adc	r25, r25
+  d8:	28 17       	cp	r18, r24
+  da:	39 07       	cpc	r19, r25
+  dc:	69 f4       	brne	.+26     	; 0xf8 <__stack+0x19>
+		PORTD = 0;
+  de:	12 ba       	out	0x12, r1	; 18
+		PORTB = pgm_read_byte(&tabelle[count]);	
+  e0:	e0 91 62 00 	lds	r30, 0x0062
+  e4:	f0 e0       	ldi	r31, 0x00	; 0
+  e6:	ea 5d       	subi	r30, 0xDA	; 218
+  e8:	ff 4f       	sbci	r31, 0xFF	; 255
+  ea:	e4 91       	lpm	r30, Z+
+  ec:	e8 bb       	out	0x18, r30	; 24
+		PORTD = 1;
+  ee:	81 e0       	ldi	r24, 0x01	; 1
+  f0:	82 bb       	out	0x12, r24	; 18
+		ledzeit=0;
+  f2:	10 92 64 00 	sts	0x0064, r1
+  f6:	15 c0       	rjmp	.+42     	; 0x122 <__stack+0x43>
+	}else if (ledzeit==leuchtzeit){	
+  f8:	90 91 64 00 	lds	r25, 0x0064
+  fc:	80 91 60 00 	lds	r24, 0x0060
+ 100:	98 17       	cp	r25, r24
+ 102:	51 f4       	brne	.+20     	; 0x118 <__stack+0x39>
+		PORTD = 0;
+ 104:	12 ba       	out	0x12, r1	; 18
+		PORTB = pgm_read_byte(&tabelle[countz]);
+ 106:	e0 91 63 00 	lds	r30, 0x0063
+ 10a:	f0 e0       	ldi	r31, 0x00	; 0
+ 10c:	ea 5d       	subi	r30, 0xDA	; 218
+ 10e:	ff 4f       	sbci	r31, 0xFF	; 255
+ 110:	e4 91       	lpm	r30, Z+
+ 112:	e8 bb       	out	0x18, r30	; 24
+		PORTD = 2;
+ 114:	82 e0       	ldi	r24, 0x02	; 2
+ 116:	82 bb       	out	0x12, r24	; 18
+		ledzeit++;
+	}else{
+		ledzeit++;
+ 118:	80 91 64 00 	lds	r24, 0x0064
+ 11c:	8f 5f       	subi	r24, 0xFF	; 255
+ 11e:	80 93 64 00 	sts	0x0064, r24
+	}
+}
+ 122:	ff 91       	pop	r31
+ 124:	ef 91       	pop	r30
+ 126:	bf 91       	pop	r27
+ 128:	af 91       	pop	r26
+ 12a:	9f 91       	pop	r25
+ 12c:	8f 91       	pop	r24
+ 12e:	3f 91       	pop	r19
+ 130:	2f 91       	pop	r18
+ 132:	0f 90       	pop	r0
+ 134:	0f be       	out	0x3f, r0	; 63
+ 136:	0f 90       	pop	r0
+ 138:	1f 90       	pop	r1
+ 13a:	18 95       	reti
+
+0000013c <warte>:
+
+
+
+/*delay*/
+void warte(uint32_t nervig){
+	zeit = nervig;
+ 13c:	60 93 66 00 	sts	0x0066, r22
+ 140:	70 93 67 00 	sts	0x0067, r23
+ 144:	80 93 68 00 	sts	0x0068, r24
+ 148:	90 93 69 00 	sts	0x0069, r25
+	zeit_laeuft = 1;
+ 14c:	81 e0       	ldi	r24, 0x01	; 1
+ 14e:	80 93 65 00 	sts	0x0065, r24
+	while(zeit_laeuft);
+ 152:	80 91 65 00 	lds	r24, 0x0065
+ 156:	88 23       	and	r24, r24
+ 158:	e1 f7       	brne	.-8      	; 0x152 <warte+0x16>
+}
+ 15a:	08 95       	ret
+
+0000015c <main>:
+
+
+	// Initialisieren
+
+
+	OCR0A = 249; //Bis wohin soll gezaehlt werden 
+ 15c:	89 ef       	ldi	r24, 0xF9	; 249
+ 15e:	86 bf       	out	0x36, r24	; 54
+	TCCR0A |=(1<<WGM01); //Bestimmt die zaehlweise des Timers
+ 160:	80 b7       	in	r24, 0x30	; 48
+ 162:	82 60       	ori	r24, 0x02	; 2
+ 164:	80 bf       	out	0x30, r24	; 48
+	TIMSK |=(1<<OCIE0A); //bestimmt die interrupts die ausfuerbar sind 
+ 166:	89 b7       	in	r24, 0x39	; 57
+ 168:	81 60       	ori	r24, 0x01	; 1
+ 16a:	89 bf       	out	0x39, r24	; 57
+						 //in diesem fall der "Timer/counter0 compare Match A" 	
+	TCCR0B |=(1<<CS00);//bestimmt ob ein interner bzw. externer takt fuer den timer benutzt werden soll
+ 16c:	83 b7       	in	r24, 0x33	; 51
+ 16e:	81 60       	ori	r24, 0x01	; 1
+ 170:	83 bf       	out	0x33, r24	; 51
+					  //und mit welchem taktteiler benutzt werden soll
+					  //ausschlieslich nulltes bit gesetzt bedeutet keinen Taktteiler.
+
+	sei(); //Globale iterrupt wird aktiviert... (enabelt)
+ 172:	78 94       	sei
+
+	ledzeit=0;
+ 174:	10 92 64 00 	sts	0x0064, r1
+	DDRB |= 255; //pins PORTB als ausgang definieren
+ 178:	87 b3       	in	r24, 0x17	; 23
+ 17a:	8f ef       	ldi	r24, 0xFF	; 255
+ 17c:	87 bb       	out	0x17, r24	; 23
+	PORTB = tabelle[0];//inizialisierung der pins
+ 17e:	80 91 26 00 	lds	r24, 0x0026
+ 182:	88 bb       	out	0x18, r24	; 24
+	DDRD |= 3;
+ 184:	81 b3       	in	r24, 0x11	; 17
+ 186:	83 60       	ori	r24, 0x03	; 3
+ 188:	81 bb       	out	0x11, r24	; 17
+	PORTD = 3;
+ 18a:	83 e0       	ldi	r24, 0x03	; 3
+ 18c:	82 bb       	out	0x12, r24	; 18
+
+	while(1){
+	
+	//zaehlen und speicher beschreiben
+	
+	if (count==9){ 		
+ 18e:	80 91 62 00 	lds	r24, 0x0062
+ 192:	89 30       	cpi	r24, 0x09	; 9
+ 194:	79 f4       	brne	.+30     	; 0x1b4 <main+0x58>
+			count=0;
+ 196:	10 92 62 00 	sts	0x0062, r1
+			if (countz==9){				
+ 19a:	80 91 63 00 	lds	r24, 0x0063
+ 19e:	89 30       	cpi	r24, 0x09	; 9
+ 1a0:	19 f4       	brne	.+6      	; 0x1a8 <main+0x4c>
+				countz = 0;
+ 1a2:	10 92 63 00 	sts	0x0063, r1
+ 1a6:	0b c0       	rjmp	.+22     	; 0x1be <main+0x62>
+			} else{
+				countz++;
+ 1a8:	80 91 63 00 	lds	r24, 0x0063
+ 1ac:	8f 5f       	subi	r24, 0xFF	; 255
+ 1ae:	80 93 63 00 	sts	0x0063, r24
+ 1b2:	05 c0       	rjmp	.+10     	; 0x1be <main+0x62>
+			}
+		}else{			
+			count++;
+ 1b4:	80 91 62 00 	lds	r24, 0x0062
+ 1b8:	8f 5f       	subi	r24, 0xFF	; 255
+ 1ba:	80 93 62 00 	sts	0x0062, r24
+		}
+		//delay
+		warte(2000);
+ 1be:	60 ed       	ldi	r22, 0xD0	; 208
+ 1c0:	77 e0       	ldi	r23, 0x07	; 7
+ 1c2:	80 e0       	ldi	r24, 0x00	; 0
+ 1c4:	90 e0       	ldi	r25, 0x00	; 0
+ 1c6:	ba df       	rcall	.-140    	; 0x13c <warte>
+	}
+ 1c8:	e2 cf       	rjmp	.-60     	; 0x18e <main+0x32>
+
+000001ca <_exit>:
+ 1ca:	f8 94       	cli
+
+000001cc <__stop_program>:
+ 1cc:	ff cf       	rjmp	.-2      	; 0x1cc <__stop_program>

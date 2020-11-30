@@ -1,0 +1,381 @@
+
+ueb06.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000001dc  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000002  00800060  000001dc  00000270  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000008  00800062  00800062  00000272  2**0
+                  ALLOC
+  3 .stab         000006b4  00000000  00000000  00000274  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  4 .stabstr      00000085  00000000  00000000  00000928  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_aranges 00000020  00000000  00000000  000009ad  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_pubnames 00000080  00000000  00000000  000009cd  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_info   0000025a  00000000  00000000  00000a4d  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_abbrev 000000db  00000000  00000000  00000ca7  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_line   0000026a  00000000  00000000  00000d82  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_frame  00000030  00000000  00000000  00000fec  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_str    000000f4  00000000  00000000  0000101c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_loc    000000d8  00000000  00000000  00001110  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 13 .debug_pubtypes 00000038  00000000  00000000  000011e8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	1a c0       	rjmp	.+52     	; 0x36 <__ctors_end>
+   2:	32 c0       	rjmp	.+100    	; 0x68 <__bad_interrupt>
+   4:	31 c0       	rjmp	.+98     	; 0x68 <__bad_interrupt>
+   6:	30 c0       	rjmp	.+96     	; 0x68 <__bad_interrupt>
+   8:	2f c0       	rjmp	.+94     	; 0x68 <__bad_interrupt>
+   a:	2e c0       	rjmp	.+92     	; 0x68 <__bad_interrupt>
+   c:	2d c0       	rjmp	.+90     	; 0x68 <__bad_interrupt>
+   e:	2c c0       	rjmp	.+88     	; 0x68 <__bad_interrupt>
+  10:	2b c0       	rjmp	.+86     	; 0x68 <__bad_interrupt>
+  12:	2a c0       	rjmp	.+84     	; 0x68 <__bad_interrupt>
+  14:	29 c0       	rjmp	.+82     	; 0x68 <__bad_interrupt>
+  16:	28 c0       	rjmp	.+80     	; 0x68 <__bad_interrupt>
+  18:	27 c0       	rjmp	.+78     	; 0x68 <__bad_interrupt>
+  1a:	27 c0       	rjmp	.+78     	; 0x6a <__vector_13>
+  1c:	25 c0       	rjmp	.+74     	; 0x68 <__bad_interrupt>
+  1e:	24 c0       	rjmp	.+72     	; 0x68 <__bad_interrupt>
+  20:	23 c0       	rjmp	.+70     	; 0x68 <__bad_interrupt>
+  22:	22 c0       	rjmp	.+68     	; 0x68 <__bad_interrupt>
+  24:	21 c0       	rjmp	.+66     	; 0x68 <__bad_interrupt>
+
+00000026 <tabelle>:
+  26:	c0 f9 a4 b0 99 92 02 f8 80 90 88 83 c6 a1 86 8e     ................
+
+00000036 <__ctors_end>:
+  36:	11 24       	eor	r1, r1
+  38:	1f be       	out	0x3f, r1	; 63
+  3a:	cf ed       	ldi	r28, 0xDF	; 223
+  3c:	cd bf       	out	0x3d, r28	; 61
+
+0000003e <__do_copy_data>:
+  3e:	10 e0       	ldi	r17, 0x00	; 0
+  40:	a0 e6       	ldi	r26, 0x60	; 96
+  42:	b0 e0       	ldi	r27, 0x00	; 0
+  44:	ec ed       	ldi	r30, 0xDC	; 220
+  46:	f1 e0       	ldi	r31, 0x01	; 1
+  48:	02 c0       	rjmp	.+4      	; 0x4e <__SREG__+0xf>
+  4a:	05 90       	lpm	r0, Z+
+  4c:	0d 92       	st	X+, r0
+  4e:	a2 36       	cpi	r26, 0x62	; 98
+  50:	b1 07       	cpc	r27, r17
+  52:	d9 f7       	brne	.-10     	; 0x4a <__SREG__+0xb>
+
+00000054 <__do_clear_bss>:
+  54:	10 e0       	ldi	r17, 0x00	; 0
+  56:	a2 e6       	ldi	r26, 0x62	; 98
+  58:	b0 e0       	ldi	r27, 0x00	; 0
+  5a:	01 c0       	rjmp	.+2      	; 0x5e <.do_clear_bss_start>
+
+0000005c <.do_clear_bss_loop>:
+  5c:	1d 92       	st	X+, r1
+
+0000005e <.do_clear_bss_start>:
+  5e:	aa 36       	cpi	r26, 0x6A	; 106
+  60:	b1 07       	cpc	r27, r17
+  62:	e1 f7       	brne	.-8      	; 0x5c <.do_clear_bss_loop>
+  64:	52 d0       	rcall	.+164    	; 0x10a <main>
+  66:	b8 c0       	rjmp	.+368    	; 0x1d8 <_exit>
+
+00000068 <__bad_interrupt>:
+  68:	cb cf       	rjmp	.-106    	; 0x0 <__vectors>
+
+0000006a <__vector_13>:
+	[15] = 0b10111000
+    */
+
+
+/*interrupt zur kontrolle der zaehlgeschwindigkeit*/
+ISR(TIMER0_COMPA_vect){
+  6a:	1f 92       	push	r1
+  6c:	0f 92       	push	r0
+  6e:	0f b6       	in	r0, 0x3f	; 63
+  70:	0f 92       	push	r0
+  72:	11 24       	eor	r1, r1
+  74:	2f 93       	push	r18
+  76:	3f 93       	push	r19
+  78:	8f 93       	push	r24
+  7a:	9f 93       	push	r25
+  7c:	ef 93       	push	r30
+  7e:	ff 93       	push	r31
+    if(zeit_laeuft){
+  80:	80 91 65 00 	lds	r24, 0x0065
+  84:	88 23       	and	r24, r24
+  86:	29 f0       	breq	.+10     	; 0x92 <__vector_13+0x28>
+        zeit_laeuft--;
+  88:	80 91 65 00 	lds	r24, 0x0065
+  8c:	81 50       	subi	r24, 0x01	; 1
+  8e:	80 93 65 00 	sts	0x0065, r24
+    }
+
+    //wechseln zwischen beiden anzeigen
+	if (ledzeit==(leuchtzeit*2)){ 
+  92:	20 91 64 00 	lds	r18, 0x0064
+  96:	80 91 60 00 	lds	r24, 0x0060
+  9a:	30 e0       	ldi	r19, 0x00	; 0
+  9c:	90 e0       	ldi	r25, 0x00	; 0
+  9e:	88 0f       	add	r24, r24
+  a0:	99 1f       	adc	r25, r25
+  a2:	28 17       	cp	r18, r24
+  a4:	39 07       	cpc	r19, r25
+  a6:	79 f4       	brne	.+30     	; 0xc6 <__vector_13+0x5c>
+		PORTD ^=2;
+  a8:	82 b3       	in	r24, 0x12	; 18
+  aa:	92 e0       	ldi	r25, 0x02	; 2
+  ac:	89 27       	eor	r24, r25
+  ae:	82 bb       	out	0x12, r24	; 18
+		PORTB = pgm_read_byte(&tabelle[count]);	
+  b0:	e0 91 62 00 	lds	r30, 0x0062
+  b4:	f0 e0       	ldi	r31, 0x00	; 0
+  b6:	ea 5d       	subi	r30, 0xDA	; 218
+  b8:	ff 4f       	sbci	r31, 0xFF	; 255
+  ba:	e4 91       	lpm	r30, Z+
+  bc:	e8 bb       	out	0x18, r30	; 24
+		PORTD |=1;
+  be:	90 9a       	sbi	0x12, 0	; 18
+		ledzeit=0;
+  c0:	10 92 64 00 	sts	0x0064, r1
+  c4:	12 c0       	rjmp	.+36     	; 0xea <__stack+0xb>
+	}else if (ledzeit==leuchtzeit){	
+  c6:	90 91 64 00 	lds	r25, 0x0064
+  ca:	80 91 60 00 	lds	r24, 0x0060
+  ce:	98 17       	cp	r25, r24
+  d0:	61 f4       	brne	.+24     	; 0xea <__stack+0xb>
+		PORTD ^=1 ;
+  d2:	82 b3       	in	r24, 0x12	; 18
+  d4:	91 e0       	ldi	r25, 0x01	; 1
+  d6:	89 27       	eor	r24, r25
+  d8:	82 bb       	out	0x12, r24	; 18
+		PORTB = pgm_read_byte(&tabelle[countz]);
+  da:	e0 91 63 00 	lds	r30, 0x0063
+  de:	f0 e0       	ldi	r31, 0x00	; 0
+  e0:	ea 5d       	subi	r30, 0xDA	; 218
+  e2:	ff 4f       	sbci	r31, 0xFF	; 255
+  e4:	e4 91       	lpm	r30, Z+
+  e6:	e8 bb       	out	0x18, r30	; 24
+		PORTD |=2;
+  e8:	91 9a       	sbi	0x12, 1	; 18
+	}
+	ledzeit++;
+  ea:	80 91 64 00 	lds	r24, 0x0064
+  ee:	8f 5f       	subi	r24, 0xFF	; 255
+  f0:	80 93 64 00 	sts	0x0064, r24
+	
+}
+  f4:	ff 91       	pop	r31
+  f6:	ef 91       	pop	r30
+  f8:	9f 91       	pop	r25
+  fa:	8f 91       	pop	r24
+  fc:	3f 91       	pop	r19
+  fe:	2f 91       	pop	r18
+ 100:	0f 90       	pop	r0
+ 102:	0f be       	out	0x3f, r0	; 63
+ 104:	0f 90       	pop	r0
+ 106:	1f 90       	pop	r1
+ 108:	18 95       	reti
+
+0000010a <main>:
+    uint8_t rauf =0,runter =0; //^^boolean 
+
+	// Initialisieren
+
+
+	OCR0A = 249; //Bis wohin soll gezaehlt werden 
+ 10a:	89 ef       	ldi	r24, 0xF9	; 249
+ 10c:	86 bf       	out	0x36, r24	; 54
+	TCCR0A |=(1<<WGM01); //Bestimmt die zaehlweise des Timers
+ 10e:	80 b7       	in	r24, 0x30	; 48
+ 110:	82 60       	ori	r24, 0x02	; 2
+ 112:	80 bf       	out	0x30, r24	; 48
+	TIMSK |=(1<<OCIE0A); //bestimmt die interrupts die ausfuerbar sind 
+ 114:	89 b7       	in	r24, 0x39	; 57
+ 116:	81 60       	ori	r24, 0x01	; 1
+ 118:	89 bf       	out	0x39, r24	; 57
+						 //in diesem fall der "Timer/counter0 compare Match A" 	
+	TCCR0B |=(1<<CS00);//bestimmt ob ein interner bzw. externer takt fuer den timer benutzt werden soll
+ 11a:	83 b7       	in	r24, 0x33	; 51
+ 11c:	81 60       	ori	r24, 0x01	; 1
+ 11e:	83 bf       	out	0x33, r24	; 51
+					  //und mit welchem taktteiler benutzt werden soll
+					  //ausschlieslich nulltes bit gesetzt bedeutet keinen Taktteiler.
+
+	sei(); //Globale iterrupt wird aktiviert... (enabelt)
+ 120:	78 94       	sei
+
+	ledzeit=0;
+ 122:	10 92 64 00 	sts	0x0064, r1
+	DDRB    |= 255; //pins PORTB als ausgang definieren
+ 126:	87 b3       	in	r24, 0x17	; 23
+ 128:	8f ef       	ldi	r24, 0xFF	; 255
+ 12a:	87 bb       	out	0x17, r24	; 23
+	PORTB = pgm_read_byte(&tabelle[0]);//inizialisierung der pins
+ 12c:	e6 e2       	ldi	r30, 0x26	; 38
+ 12e:	f0 e0       	ldi	r31, 0x00	; 0
+ 130:	e4 91       	lpm	r30, Z+
+ 132:	e8 bb       	out	0x18, r30	; 24
+	DDRD    |= 3;   //PD0 & PD1 als ausgang definieren
+ 134:	81 b3       	in	r24, 0x11	; 17
+ 136:	83 60       	ori	r24, 0x03	; 3
+ 138:	81 bb       	out	0x11, r24	; 17
+	PORTD |= 5<<4;  //pullup widerstaende aktivieren
+ 13a:	82 b3       	in	r24, 0x12	; 18
+ 13c:	80 65       	ori	r24, 0x50	; 80
+ 13e:	82 bb       	out	0x12, r24	; 18
+    PORTD   |= 3;   //PD0 & PD1 aktivieren
+ 140:	82 b3       	in	r24, 0x12	; 18
+ 142:	83 60       	ori	r24, 0x03	; 3
+ 144:	82 bb       	out	0x12, r24	; 18
+
+
+
+
+int main(void){
+    uint8_t rauf =0,runter =0; //^^boolean 
+ 146:	90 e0       	ldi	r25, 0x00	; 0
+ 148:	80 e0       	ldi	r24, 0x00	; 0
+        }	
+
+        if((PIND & 1<<6) && !runter){ //runterzaehlen bei tastendruck um 1
+            runter=1;
+        	if (count==0){ 		
+        		count=15;
+ 14a:	2f e0       	ldi	r18, 0x0F	; 15
+        	}else{			
+        		count++;
+        	}
+        }
+
+        zeit_laeuft=3; //auskontern von nicht entpraellten schaltern
+ 14c:	33 e0       	ldi	r19, 0x03	; 3
+    PORTD   |= 3;   //PD0 & PD1 aktivieren
+
+	while(1){
+	
+	
+       if(!(PIND & 1<<6) && runter){
+ 14e:	86 9b       	sbis	0x10, 6	; 16
+            runter=0;
+ 150:	90 e0       	ldi	r25, 0x00	; 0
+        }	
+
+        if((PIND & 1<<6) && !runter){ //runterzaehlen bei tastendruck um 1
+ 152:	86 9b       	sbis	0x10, 6	; 16
+ 154:	1b c0       	rjmp	.+54     	; 0x18c <main+0x82>
+ 156:	99 23       	and	r25, r25
+ 158:	c9 f4       	brne	.+50     	; 0x18c <main+0x82>
+            runter=1;
+        	if (count==0){ 		
+ 15a:	90 91 62 00 	lds	r25, 0x0062
+ 15e:	99 23       	and	r25, r25
+ 160:	79 f4       	brne	.+30     	; 0x180 <main+0x76>
+        		count=15;
+ 162:	20 93 62 00 	sts	0x0062, r18
+        		if (countz==0){				
+ 166:	90 91 63 00 	lds	r25, 0x0063
+ 16a:	99 23       	and	r25, r25
+ 16c:	19 f4       	brne	.+6      	; 0x174 <main+0x6a>
+        			countz = 15;
+ 16e:	20 93 63 00 	sts	0x0063, r18
+ 172:	0b c0       	rjmp	.+22     	; 0x18a <main+0x80>
+        		} else{
+                	countz--;
+ 174:	90 91 63 00 	lds	r25, 0x0063
+ 178:	91 50       	subi	r25, 0x01	; 1
+ 17a:	90 93 63 00 	sts	0x0063, r25
+ 17e:	05 c0       	rjmp	.+10     	; 0x18a <main+0x80>
+        		}
+        	}else{			
+        		count--;
+ 180:	90 91 62 00 	lds	r25, 0x0062
+ 184:	91 50       	subi	r25, 0x01	; 1
+ 186:	90 93 62 00 	sts	0x0062, r25
+       if(!(PIND & 1<<6) && runter){
+            runter=0;
+        }	
+
+        if((PIND & 1<<6) && !runter){ //runterzaehlen bei tastendruck um 1
+            runter=1;
+ 18a:	91 e0       	ldi	r25, 0x01	; 1
+        	}else{			
+        		count--;
+        	}
+        }
+        
+        if(!(PIND & 1<<4) && rauf){
+ 18c:	84 9b       	sbis	0x10, 4	; 16
+            rauf=0;
+ 18e:	80 e0       	ldi	r24, 0x00	; 0
+        }	
+
+        if((PIND & 1<<4)&& !rauf){ //raufzaehlen bei tastendruck um 1 
+ 190:	84 9b       	sbis	0x10, 4	; 16
+ 192:	1b c0       	rjmp	.+54     	; 0x1ca <main+0xc0>
+ 194:	88 23       	and	r24, r24
+ 196:	c9 f4       	brne	.+50     	; 0x1ca <main+0xc0>
+            rauf=1;
+        	if (count==15){ 		
+ 198:	80 91 62 00 	lds	r24, 0x0062
+ 19c:	8f 30       	cpi	r24, 0x0F	; 15
+ 19e:	79 f4       	brne	.+30     	; 0x1be <main+0xb4>
+        		count=0;
+ 1a0:	10 92 62 00 	sts	0x0062, r1
+        		if (countz==15){				
+ 1a4:	80 91 63 00 	lds	r24, 0x0063
+ 1a8:	8f 30       	cpi	r24, 0x0F	; 15
+ 1aa:	19 f4       	brne	.+6      	; 0x1b2 <main+0xa8>
+        			countz = 0;
+ 1ac:	10 92 63 00 	sts	0x0063, r1
+ 1b0:	0b c0       	rjmp	.+22     	; 0x1c8 <main+0xbe>
+        		} else{
+                	countz++;
+ 1b2:	80 91 63 00 	lds	r24, 0x0063
+ 1b6:	8f 5f       	subi	r24, 0xFF	; 255
+ 1b8:	80 93 63 00 	sts	0x0063, r24
+ 1bc:	05 c0       	rjmp	.+10     	; 0x1c8 <main+0xbe>
+        		}
+        	}else{			
+        		count++;
+ 1be:	80 91 62 00 	lds	r24, 0x0062
+ 1c2:	8f 5f       	subi	r24, 0xFF	; 255
+ 1c4:	80 93 62 00 	sts	0x0062, r24
+        if(!(PIND & 1<<4) && rauf){
+            rauf=0;
+        }	
+
+        if((PIND & 1<<4)&& !rauf){ //raufzaehlen bei tastendruck um 1 
+            rauf=1;
+ 1c8:	81 e0       	ldi	r24, 0x01	; 1
+        	}else{			
+        		count++;
+        	}
+        }
+
+        zeit_laeuft=3; //auskontern von nicht entpraellten schaltern
+ 1ca:	30 93 65 00 	sts	0x0065, r19
+        while(zeit_laeuft);
+ 1ce:	40 91 65 00 	lds	r20, 0x0065
+ 1d2:	44 23       	and	r20, r20
+ 1d4:	e1 f7       	brne	.-8      	; 0x1ce <main+0xc4>
+ 1d6:	bb cf       	rjmp	.-138    	; 0x14e <main+0x44>
+
+000001d8 <_exit>:
+ 1d8:	f8 94       	cli
+
+000001da <__stop_program>:
+ 1da:	ff cf       	rjmp	.-2      	; 0x1da <__stop_program>
