@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectSession>
+    <Version Value="10"/>
+    <BuildModes Active="Default"/>
+    <Units Count="1">
+      <Unit0>
+        <Filename Value="ueb8.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="17"/>
+        <CursorPos Y="24"/>
+        <UsageCount Value="20"/>
+        <Loaded Value="True"/>
+      </Unit0>
+    </Units>
+    <JumpHistory Count="5" HistoryIndex="4">
+      <Position1>
+        <Filename Value="ueb8.lpr"/>
+        <Caret Line="13" Column="40"/>
+      </Position1>
+      <Position2>
+        <Filename Value="ueb8.lpr"/>
+        <Caret Line="34" TopLine="7"/>
+      </Position2>
+      <Position3>
+        <Filename Value="ueb8.lpr"/>
+        <Caret Line="24" Column="16" TopLine="7"/>
+      </Position3>
+      <Position4>
+        <Filename Value="ueb8.lpr"/>
+        <Caret Line="20" Column="38"/>
+      </Position4>
+      <Position5>
+        <Filename Value="ueb8.lpr"/>
+        <Caret Line="35" Column="16" TopLine="16"/>
+      </Position5>
+    </JumpHistory>
+  </ProjectSession>
+  <Debugging>
+    <BreakPoints Count="1">
+      <Item1>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="ueb8.lpr"/>
+        <Line Value="35"/>
+      </Item1>
+    </BreakPoints>
+  </Debugging>
+</CONFIG>

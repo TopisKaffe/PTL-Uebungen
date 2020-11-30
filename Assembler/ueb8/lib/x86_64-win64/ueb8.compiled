@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <Compiler Value="D:\Programme\programieren\fpc\3.0.4\bin\x86_64-win64\fpc.exe" Date="1266912119"/>
+  <Params Value=" -MObjFPC -Scghi -O1 -g -gl -l -vewnhibq -FiE:\PTL\Assembler\ueb8\lib\x86_64-win64 -FuE:\PTL\Assembler\ueb8\ -FUE:\PTL\Assembler\ueb8\lib\x86_64-win64\ ueb8.lpr"/>
+  <Complete Value="False"/>
+</CONFIG>

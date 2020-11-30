@@ -1,0 +1,2 @@
+nasm -f elf64 -g -F stabs Aufgabe1.asm
+ld -o first Aufgabe1.o
